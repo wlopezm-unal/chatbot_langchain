@@ -21,7 +21,7 @@ def obtener_pdf_texto(pdfs):
     for pdf in pdfs:
         pdf_file = PdfReader(pdf)
         for page in pdf_file.pages:
-            text += page.extract_text()
+            text += page.extract_text() #Extraer el texto de cada página del pdf
     return text
 
 def obtener_chunks(texto):
@@ -32,7 +32,7 @@ def obtener_chunks(texto):
 def obtener_vectordb(chunks):
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     vector_db= FAISS.from_texts(chunks, embedding=embeddings)
-    vector_db.save_local("vector_index")
+    vector_db.save_local("vector_index") #Guardar los vectores en un archivo local
 
 def obtener_cadena_conversacion():
     prompt_template = """
@@ -50,9 +50,9 @@ def obtener_cadena_conversacion():
     return chain
 
 def user_input(user_question):
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
-    new_db = FAISS.load_local("vector_index", embeddings, allow_dangerous_deserialization=True)
-    docs=new_db.similarity_search(user_question)
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001") #Cargar el modelo de google gemini
+    new_db = FAISS.load_local("vector_index", embeddings, allow_dangerous_deserialization=True) #Cargar la plantilla de la conversación
+    docs=new_db.similarity_search(user_question) #Obtener los documentos más similares a la pregunta del usuario
     chain=obtener_cadena_conversacion()
 
     response=chain(
@@ -67,10 +67,10 @@ def main():
     st.set_page_config(page_title="Chatbot de preguntas y respuestas con tus PDFs", page_icon=":robot:")
     st.title("Chatbot")
     st.header("Chatbot usando el modelo Gemini-pro de Google y tus PDFs")
-    user_question = st.text_input("Ingresa tu pregunta: ")
+    user_question = st.text_input("Ingresa tu pregunta: ") Campo de texto para que el usuario ingrese su pregunta
 
     if user_question:
-        user_input(user_question)
+        user_input(user_question) #Obtener la respuesta del chatbot
     
     with st.sidebar:
         st.write("Menu")
