@@ -7,5 +7,6 @@ Chatbot con tu propia data o PDF usando Langchain y Gemini Pro
 * Para correr el aplicativo en localhost, puede usar el comando  --> streamlit run main.py   
 -----------------------------------------------------------------------------------------
 
-Borrador de como se ve el aplicativo corriendo 
+Vista previa  del aplicativo corriendo :
+
 ![image](https://github.com/wlopezm-unal/chatbot_langchain/assets/68913739/e0714235-465b-4ccc-b98f-edc65c698077)
