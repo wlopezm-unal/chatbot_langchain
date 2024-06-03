@@ -1,4 +1,7 @@
 
+##############################################################################################################
+#This file is the same that main.py, it only this file have as database the chromadb engine instead of  FAISS
+##############################################################################################################
 from dotenv import load_dotenv
 import streamlit as st
 from PyPDF2 import PdfReader
